@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamEssentials"
+             x:Class="XamEssentials.MainPage">
+
+    <FlexLayout Direction="Column"
+                AlignItems="Center"
+                JustifyContent="SpaceEvenly">
+        <!-- Place new controls here -->
+    	<Label Text="Welcome to Xamarin.Essentials Maps!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+        <Entry Placeholder="Address" FlexLayout.AlignSelf="Stretch" x:Name="address"></Entry>
+        <Entry Placeholder="City" FlexLayout.AlignSelf="Stretch" x:Name="city"></Entry>
+        <Entry Placeholder="State" FlexLayout.AlignSelf="Stretch" x:Name="state"></Entry>
+        <Entry Placeholder="Country" FlexLayout.AlignSelf="Stretch" x:Name="country"></Entry>
+        <Button Text="Show map" FlexLayout.AlignSelf="Stretch" Clicked="MapButton_ClickedAsync" />
+    </FlexLayout>
+
+</ContentPage>
