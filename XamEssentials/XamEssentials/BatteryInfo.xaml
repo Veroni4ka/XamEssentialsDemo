@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamEssentials.BatteryInfo">
+    <ContentPage.Content> 
+        <StackLayout>
+            <Label Text="Battery Info"
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="LevelLbl" VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand"></Label>
+            <Label x:Name="StateLbl" VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand"></Label>
+            <Label x:Name="SourceLbl" VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand"></Label>
+            <Button x:Name="batteryBtn" Text="Show Battery Info" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Clicked="ShowBatteryInfo"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

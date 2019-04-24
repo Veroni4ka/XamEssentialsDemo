@@ -15,6 +15,13 @@ namespace XamEssentials
 			InitializeComponent();
 		}
 
+        protected override void OnAppearing()
+        {
+            NavigationPage.SetHasNavigationBar(this, false);
+
+            base.OnAppearing();
+        }
+
         private async Task MapButton_ClickedAsync(object sender, EventArgs e)
         {
             var map = new MapsClass();
@@ -29,27 +36,63 @@ namespace XamEssentials
             }
             else
             {
-                await map.NavigateToBuilding25(addressStr, cityStr, stateStr, countryStr);
-                
+                await map.NavigateTo(addressStr, cityStr, stateStr, countryStr);
+
             }
         }
-	}
 
-    
+        private async void GeolocationInfo (object sender, EventArgs e)
+        {
+            try
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var location = await Geolocation.GetLocationAsync(request);
+
+                if (location != null)
+                {
+                    await DisplayAlert("Geolocation", "Latitude: " + location.Latitude + ", Longitude: " + location.Longitude + ", Altitude: " + location.Altitude, "Ok");
+                    //Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                await DisplayAlert("Permission exception", "Please, check your permissions", "Ok");
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+            }
+        }
+
+        private async void BatteryInfo(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new BatteryInfo());
+        }
+    }
+
+
     public class MapsClass
     {
-        public async Task NavigateToBuilding25(string address, string city, string state, string country)
+        public async Task NavigateTo(string address, string city, string state, string country)
         {
             var placemark = new Placemark
             {
                 CountryName = country,
-                AdminArea = state, 
+                AdminArea = state,
                 Thoroughfare = address,
-                Locality = city 
+                Locality = city
             };
-            var options = new MapsLaunchOptions { Name = "Default location", MapDirectionsMode = MapDirectionsMode.Driving };
+            var options = new MapLaunchOptions { Name = "Default location", NavigationMode = NavigationMode.Driving };
 
-            await Maps.OpenAsync(placemark, options);
+            await Map.OpenAsync(placemark, options);
         }
     }
 }

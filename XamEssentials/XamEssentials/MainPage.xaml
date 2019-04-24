@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:XamEssentials"
              x:Class="XamEssentials.MainPage">
 
+    <Grid>
+        <ScrollView> 
     <FlexLayout Direction="Column"
                 AlignItems="Center"
                 JustifyContent="SpaceEvenly">
@@ -15,7 +17,10 @@
         <Entry Placeholder="City" FlexLayout.AlignSelf="Stretch" x:Name="city"></Entry>
         <Entry Placeholder="State" FlexLayout.AlignSelf="Stretch" x:Name="state"></Entry>
         <Entry Placeholder="Country" FlexLayout.AlignSelf="Stretch" x:Name="country"></Entry>
-        <Button Text="Show map" FlexLayout.AlignSelf="Stretch" Clicked="MapButton_ClickedAsync" />
+        <Button Text="Show map" FlexLayout.AlignSelf="Stretch" />
+        <Button Text="Geolocation" FlexLayout.AlignSelf="Stretch" Clicked="GeolocationInfo" />
+        <Button Text="Battery Info" FlexLayout.AlignSelf="Stretch" Clicked="BatteryInfo"/>
     </FlexLayout>
-
+        </ScrollView>
+    </Grid>
 </ContentPage>
